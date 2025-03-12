@@ -1,0 +1,25 @@
+name: Go Tests
+
+on:
+  push:
+    branches:
+      - master  # Запускати тести при пушах у гілку main
+  pull_request:
+    branches:
+      - master  # Запускати тести при створенні PR у гілку main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Використовуємо останню версію Ubuntu
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # Отримуємо код з репозиторію
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'  # Вказуємо версію Go
+
+      - name: Run tests
+        run: go test -v ./...  # Запускаємо тести
