@@ -5,7 +5,7 @@ import (
 )
 
 func TestLength(t *testing.T) {
-	list := NewDoublyLinkedList()
+	list := NewList()
 	if list.Length() != 0 {
 		t.Errorf("Очікувана довжина 0, отримано %d", list.Length())
 	}
@@ -18,7 +18,7 @@ func TestLength(t *testing.T) {
 }
 
 func TestAppend(t *testing.T) {
-	list := NewDoublyLinkedList()
+	list := NewList()
 	list.Append('a')
 	list.Append('b')
 
@@ -33,7 +33,7 @@ func TestAppend(t *testing.T) {
 }
 
 func TestInsert(t *testing.T) {
-	list := NewDoublyLinkedList()
+	list := NewList()
 	list.Append('a')
 	list.Append('c')
 
@@ -54,7 +54,7 @@ func TestInsert(t *testing.T) {
 }
 
 func TestDelete(t *testing.T) {
-	list := NewDoublyLinkedList()
+	list := NewList()
 	list.Append('a')
 	list.Append('b')
 	list.Append('c')
@@ -78,7 +78,7 @@ func TestDelete(t *testing.T) {
 }
 
 func TestDeleteAll(t *testing.T) {
-	list := NewDoublyLinkedList()
+	list := NewList()
 	list.Append('a')
 	list.Append('b')
 	list.Append('a')
@@ -96,7 +96,7 @@ func TestDeleteAll(t *testing.T) {
 }
 
 func TestGet(t *testing.T) {
-	list := NewDoublyLinkedList()
+	list := NewList()
 	list.Append('a')
 	list.Append('b')
 
@@ -115,7 +115,7 @@ func TestGet(t *testing.T) {
 }
 
 func TestClone(t *testing.T) {
-	list := NewDoublyLinkedList()
+	list := NewList()
 	list.Append('a')
 	list.Append('b')
 
@@ -136,7 +136,7 @@ func TestClone(t *testing.T) {
 }
 
 func TestReverse(t *testing.T) {
-	list := NewDoublyLinkedList()
+	list := NewList()
 	list.Append('a')
 	list.Append('b')
 	list.Append('c')
@@ -165,7 +165,7 @@ func TestReverse(t *testing.T) {
 }
 
 func TestFindFirst(t *testing.T) {
-	list := NewDoublyLinkedList()
+	list := NewList()
 	list.Append('a')
 	list.Append('b')
 	list.Append('a')
@@ -182,7 +182,7 @@ func TestFindFirst(t *testing.T) {
 }
 
 func TestFindLast(t *testing.T) {
-	list := NewDoublyLinkedList()
+	list := NewList()
 	list.Append('a')
 	list.Append('b')
 	list.Append('a')
@@ -199,7 +199,7 @@ func TestFindLast(t *testing.T) {
 }
 
 func TestClear(t *testing.T) {
-	list := NewDoublyLinkedList()
+	list := NewList()
 	list.Append('a')
 	list.Append('b')
 
@@ -210,11 +210,11 @@ func TestClear(t *testing.T) {
 }
 
 func TestExtend(t *testing.T) {
-	list1 := NewDoublyLinkedList()
+	list1 := NewList()
 	list1.Append('a')
 	list1.Append('b')
 
-	list2 := NewDoublyLinkedList()
+	list2 := NewList()
 	list2.Append('c')
 	list2.Append('d')
 

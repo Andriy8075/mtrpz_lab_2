@@ -13,21 +13,21 @@ type Node struct {
 	next  *Node
 }
 
-type DoublyLinkedList struct {
+type List struct {
 	head *Node
 	tail *Node
 	size int
 }
 
-func NewDoublyLinkedList() *DoublyLinkedList {
-	return &DoublyLinkedList{}
+func NewList() *List {
+	return &List{}
 }
 
-func (dll *DoublyLinkedList) Length() int {
+func (dll *List) Length() int {
 	return dll.size
 }
 
-func (dll *DoublyLinkedList) Append(element Character) {
+func (dll *List) Append(element Character) {
 	newNode := &Node{value: element, prev: dll.tail}
 
 	if dll.tail == nil {
@@ -40,7 +40,7 @@ func (dll *DoublyLinkedList) Append(element Character) {
 	dll.size++
 }
 
-func (dll *DoublyLinkedList) Insert(element Character, index int) error {
+func (dll *List) Insert(element Character, index int) error {
 	if index < 0 || index > dll.size {
 		return errors.New("індекс поза межами діапазону")
 	}
@@ -70,7 +70,7 @@ func (dll *DoublyLinkedList) Insert(element Character, index int) error {
 	return nil
 }
 
-func (dll *DoublyLinkedList) Delete(index int) (Character, error) {
+func (dll *List) Delete(index int) (Character, error) {
 	if index < 0 || index >= dll.size {
 		return 0, errors.New("індекс поза межами діапазону")
 	}
@@ -102,7 +102,7 @@ func (dll *DoublyLinkedList) Delete(index int) (Character, error) {
 	return value, nil
 }
 
-func (dll *DoublyLinkedList) DeleteAll(element Character) {
+func (dll *List) DeleteAll(element Character) {
 	current := dll.head
 	for current != nil {
 		if current.value == element {
@@ -130,7 +130,7 @@ func (dll *DoublyLinkedList) DeleteAll(element Character) {
 	}
 }
 
-func (dll *DoublyLinkedList) Get(index int) (Character, error) {
+func (dll *List) Get(index int) (Character, error) {
 	if index < 0 || index >= dll.size {
 		return 0, errors.New("індекс поза межами діапазону")
 	}
@@ -143,8 +143,8 @@ func (dll *DoublyLinkedList) Get(index int) (Character, error) {
 	return current.value, nil
 }
 
-func (dll *DoublyLinkedList) Clone() *DoublyLinkedList {
-	newList := NewDoublyLinkedList()
+func (dll *List) Clone() *List {
+	newList := NewList()
 	current := dll.head
 	for current != nil {
 		newList.Append(current.value)
@@ -153,7 +153,7 @@ func (dll *DoublyLinkedList) Clone() *DoublyLinkedList {
 	return newList
 }
 
-func (dll *DoublyLinkedList) Reverse() {
+func (dll *List) Reverse() {
 	current := dll.head
 	dll.tail = current
 	var temp *Node
@@ -171,7 +171,7 @@ func (dll *DoublyLinkedList) Reverse() {
 	}
 }
 
-func (dll *DoublyLinkedList) FindFirst(element Character) int {
+func (dll *List) FindFirst(element Character) int {
 	current := dll.head
 	index := 0
 
@@ -186,7 +186,7 @@ func (dll *DoublyLinkedList) FindFirst(element Character) int {
 	return -1
 }
 
-func (dll *DoublyLinkedList) FindLast(element Character) int {
+func (dll *List) FindLast(element Character) int {
 	current := dll.tail
 	index := dll.size - 1
 	for current != nil {
@@ -200,13 +200,13 @@ func (dll *DoublyLinkedList) FindLast(element Character) int {
 	return -1
 }
 
-func (dll *DoublyLinkedList) Clear() {
+func (dll *List) Clear() {
 	dll.head = nil
 	dll.tail = nil
 	dll.size = 0
 }
 
-func (dll *DoublyLinkedList) Extend(other *DoublyLinkedList) {
+func (dll *List) Extend(other *List) {
 	current := other.head
 	for current != nil {
 		dll.Append(current.value)
@@ -214,7 +214,7 @@ func (dll *DoublyLinkedList) Extend(other *DoublyLinkedList) {
 	}
 }
 
-func (dll *DoublyLinkedList) Print() {
+func (dll *List) Print() {
 	current := dll.head
 	for current != nil {
 		fmt.Printf("%c ", current.value)
