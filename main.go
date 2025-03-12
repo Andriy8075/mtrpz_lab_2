@@ -145,11 +145,6 @@ func (dll *List) Get(index int) (Character, error) {
 
 func (dll *List) Clone() *List {
 	newList := NewList()
-	current := dll.head
-	for current != nil {
-		newList.Append(current.value)
-		current = current.next
-	}
 	return newList
 }
 
