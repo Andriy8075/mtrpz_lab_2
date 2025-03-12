@@ -23,40 +23,40 @@ func NewList() *List {
 	return &List{}
 }
 
-func (dll *List) Length() int {
-	return dll.size
+func (list *List) Length() int {
+	return list.size
 }
 
-func (dll *List) Append(element Character) {
-	newNode := &Node{value: element, prev: dll.tail}
+func (list *List) Append(element Character) {
+	newNode := &Node{value: element, prev: list.tail}
 
-	if dll.tail == nil {
-		dll.head = newNode
+	if list.tail == nil {
+		list.head = newNode
 	} else {
-		dll.tail.next = newNode
+		list.tail.next = newNode
 	}
 
-	dll.tail = newNode
-	dll.size++
+	list.tail = newNode
+	list.size++
 }
 
-func (dll *List) Insert(element Character, index int) error {
-	if index < 0 || index > dll.size {
+func (list *List) Insert(element Character, index int) error {
+	if index < 0 || index > list.size {
 		return errors.New("індекс поза межами діапазону")
 	}
 
-	if index == dll.size {
-		dll.Append(element)
+	if index == list.size {
+		list.Append(element)
 		return nil
 	}
 
 	newNode := &Node{value: element}
 	if index == 0 {
-		newNode.next = dll.head
-		dll.head.prev = newNode
-		dll.head = newNode
+		newNode.next = list.head
+		list.head.prev = newNode
+		list.head = newNode
 	} else {
-		current := dll.head
+		current := list.head
 		for i := 0; i < index-1; i++ {
 			current = current.next
 		}
@@ -66,30 +66,30 @@ func (dll *List) Insert(element Character, index int) error {
 		current.next = newNode
 	}
 
-	dll.size++
+	list.size++
 	return nil
 }
 
-func (dll *List) Delete(index int) (Character, error) {
-	if index < 0 || index >= dll.size {
+func (list *List) Delete(index int) (Character, error) {
+	if index < 0 || index >= list.size {
 		return 0, errors.New("індекс поза межами діапазону")
 	}
 
 	var value Character
-	if dll.size == 1 {
-		value = dll.head.value
-		dll.head = nil
-		dll.tail = nil
+	if list.size == 1 {
+		value = list.head.value
+		list.head = nil
+		list.tail = nil
 	} else if index == 0 {
-		value = dll.head.value
-		dll.head = dll.head.next
-		dll.head.prev = nil
-	} else if index == dll.size-1 {
-		value = dll.tail.value
-		dll.tail = dll.tail.prev
-		dll.tail.next = nil
+		value = list.head.value
+		list.head = list.head.next
+		list.head.prev = nil
+	} else if index == list.size-1 {
+		value = list.tail.value
+		list.tail = list.tail.prev
+		list.tail.next = nil
 	} else {
-		current := dll.head
+		current := list.head
 		for i := 0; i < index; i++ {
 			current = current.next
 		}
@@ -98,44 +98,44 @@ func (dll *List) Delete(index int) (Character, error) {
 		current.next.prev = current.prev
 	}
 
-	dll.size--
+	list.size--
 	return value, nil
 }
 
-func (dll *List) DeleteAll(element Character) {
-	current := dll.head
+func (list *List) DeleteAll(element Character) {
+	current := list.head
 	for current != nil {
 		if current.value == element {
 			if current.prev == nil {
-				dll.head = current.next
-				if dll.head != nil {
-					dll.head.prev = nil
+				list.head = current.next
+				if list.head != nil {
+					list.head.prev = nil
 				}
 			} else {
 				current.prev.next = current.next
 			}
 
 			if current.next == nil {
-				dll.tail = current.prev
-				if dll.tail != nil {
-					dll.tail.next = nil
+				list.tail = current.prev
+				if list.tail != nil {
+					list.tail.next = nil
 				}
 			} else {
 				current.next.prev = current.prev
 			}
 
-			dll.size--
+			list.size--
 		}
 		current = current.next
 	}
 }
 
-func (dll *List) Get(index int) (Character, error) {
-	if index < 0 || index >= dll.size {
+func (list *List) Get(index int) (Character, error) {
+	if index < 0 || index >= list.size {
 		return 0, errors.New("індекс поза межами діапазону")
 	}
 
-	current := dll.head
+	current := list.head
 	for i := 0; i < index; i++ {
 		current = current.next
 	}
@@ -143,9 +143,9 @@ func (dll *List) Get(index int) (Character, error) {
 	return current.value, nil
 }
 
-func (dll *List) Clone() *List {
+func (list *List) Clone() *List {
 	newList := NewList()
-	current := dll.head
+	current := list.head
 	for current != nil {
 		newList.Append(current.value)
 		current = current.next
@@ -153,9 +153,9 @@ func (dll *List) Clone() *List {
 	return newList
 }
 
-func (dll *List) Reverse() {
-	current := dll.head
-	dll.tail = current
+func (list *List) Reverse() {
+	current := list.head
+	list.tail = current
 	var temp *Node
 
 	for current != nil {
@@ -166,13 +166,13 @@ func (dll *List) Reverse() {
 	}
 
 	if temp != nil {
-		dll.head = temp.prev
+		list.head = temp.prev
 
 	}
 }
 
-func (dll *List) FindFirst(element Character) int {
-	current := dll.head
+func (list *List) FindFirst(element Character) int {
+	current := list.head
 	index := 0
 
 	for current != nil {
@@ -186,9 +186,9 @@ func (dll *List) FindFirst(element Character) int {
 	return -1
 }
 
-func (dll *List) FindLast(element Character) int {
-	current := dll.tail
-	index := dll.size - 1
+func (list *List) FindLast(element Character) int {
+	current := list.tail
+	index := list.size - 1
 	for current != nil {
 		if current.value == element {
 			return index
@@ -200,22 +200,22 @@ func (dll *List) FindLast(element Character) int {
 	return -1
 }
 
-func (dll *List) Clear() {
-	dll.head = nil
-	dll.tail = nil
-	dll.size = 0
+func (list *List) Clear() {
+	list.head = nil
+	list.tail = nil
+	list.size = 0
 }
 
-func (dll *List) Extend(other *List) {
+func (list *List) Extend(other *List) {
 	current := other.head
 	for current != nil {
-		dll.Append(current.value)
+		list.Append(current.value)
 		current = current.next
 	}
 }
 
-func (dll *List) Print() {
-	current := dll.head
+func (list *List) Print() {
+	current := list.head
 	for current != nil {
 		fmt.Printf("%c ", current.value)
 		current = current.next
