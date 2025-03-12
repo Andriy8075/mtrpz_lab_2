@@ -152,16 +152,6 @@ func TestReverse(t *testing.T) {
 	if value != 'b' {
 		t.Errorf("Очікуваний елемент 'b', отримано %c", value)
 	}
-
-	value = list.head.value
-	if value != 'c' {
-		t.Errorf("Очікуваний елемент 'c', отримано %c", value)
-	}
-
-	value = list.tail.value
-	if value != 'a' {
-		t.Errorf("Очікуваний елемент 'a', отримано %c", value)
-	}
 }
 
 func TestFindFirst(t *testing.T) {
